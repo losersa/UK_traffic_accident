@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
@@ -43,9 +45,6 @@ def error_404(request):
 def account(request):
     return render(request, "traffic/account.html")
 
-def account(request):
-    return render(request, "traffic/account.html")
-
 def charts(request):
     return render(request, "traffic/charts.html")
 
@@ -61,6 +60,10 @@ def index(request):
     return render(request, "traffic/index.html", context)
 
 def login(request):
+
+
+    res = Users.objects.all().values('id', 'user_name')
+
     return render(request, "traffic/login.html")
 
 def notifications(request):
@@ -76,7 +79,26 @@ def settings(request):
     return render(request, "traffic/settings.html")
 
 def signup(request):
-    return render(request, "traffic/signup.html")
+
+    name = request.POST.get("signup-name")
+    email = request.POST.get("signup-email")
+    password = request.POST.get("signup-password")
+    confirm_password = request.POST.get("confirm-password")
+
+    # print(name, email, password)
+    context = {}
+
+    if confirm_password != password:
+        context["confirm_password"] = "两次输入密码不一致"
+
+    if name!=None and email!=None and password!=None:
+        res = Users.objects.filter(user_email=email)
+        if res.first() == None:
+            Users.objects.create(user_name=name, user_email=email, user_password=password)
+        else:
+            context["email_already_exists"] = "邮箱已存在！请尝试登录"
+
+    return render(request, "traffic/signup.html", context)
 
 
 
