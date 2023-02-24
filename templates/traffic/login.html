@@ -11,7 +11,7 @@
 <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
 
 <!-- FontAwesome JS--><script defer src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/5.14.0/js/all.min.js"></script><!-- App CSS -->
-<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">
+{#<link id="theme-style" rel="stylesheet" href="assets/css/portal.css">#}
 <link id="theme-style" rel="stylesheet" href="{% static 'css/portal.css' %}">
 
 </head>
@@ -23,7 +23,8 @@
         <div class="app-auth-branding mb-4"><a class="app-logo" href="/index"><img class="logo-icon mr-2" src="{% static 'images/app-logo.svg' %}" alt="logo"></a></div>
         <h2 class="auth-heading text-center mb-5">Log in to Portal</h2>
         <div class="auth-form-container text-left">
-          <form class="auth-form login-form" >
+          <form class="auth-form login-form" method="post">
+              {% csrf_token %}
             <div class="email mb-3">
               <label class="sr-only" for="signin-email">Email</label>
               <input id="signin-email" name="signin-email" type="email" class="form-control signin-email" placeholder="Email address" required="required">
@@ -50,6 +51,8 @@
               <button type="submit" class="btn app-btn-primary btn-block theme-btn mx-auto">Log In</button>
             </div>
           </form>
+
+            <div class="auth-option text-center pt-5" >{{ login }}</div>
           <div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link" href="/signup">here</a>.</div>
         </div>
         <!--//auth-form-container--></div>

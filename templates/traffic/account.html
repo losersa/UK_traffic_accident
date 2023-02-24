@@ -52,7 +52,7 @@
                 <div class="dropdown-menu-content">
                   <div class="item p-3">
                     <div class="row gx-2 justify-content-between align-items-center">
-                      <div class="col-auto"><img class="profile-image" src="assets/images/profiles/profile-1.png" alt=""></div>
+                      <div class="col-auto"><img class="profile-image" src="{% static 'images/profiles/profile-1.png' %}" alt=""></div>
                       <!--//col-->
                       <div class="col">
                         <div class="info">
@@ -104,7 +104,7 @@
                   <!--//item-->
                   <div class="item p-3">
                     <div class="row gx-2 justify-content-between align-items-center">
-                      <div class="col-auto"><img class="profile-image" src="assets/images/profiles/profile-2.png" alt=""></div>
+                      <div class="col-auto"><img class="profile-image" src="{% static 'images/profiles/profile-2.png' %}" alt=""></div>
                       <!--//col-->
                       <div class="col">
                         <div class="info">
@@ -127,7 +127,7 @@
               </svg>
               </a></div>
             <!--//app-utility-item-->
-            <div class="app-utility-item app-user-dropdown dropdown"><a class="dropdown-toggle" id="user-dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
+            <div class="app-utility-item app-user-dropdown dropdown"><a class="dropdown-toggle" id="user-dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="{% static 'images/user.png'%}" alt="user profile"></a>
               <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                 <li><a class="dropdown-item" href="/account">Account</a></li>
                 <li><a class="dropdown-item" href="/settings">Settings</a></li>
@@ -287,7 +287,7 @@
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
                     <div class="item-label mb-2"><strong>Photo</strong></div>
-                    <div class="item-data"><img class="profile-image" src="assets/images/user.png" alt=""></div>
+                    <div class="item-data"><img class="profile-image" src="{% static 'images/user.png' %}" alt=""></div>
                   </div>
                   <!--//col-->
                   <div class="col text-right"><a class="btn-sm app-btn-secondary" href="#">Change</a></div>
@@ -298,7 +298,7 @@
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
                     <div class="item-label"><strong>Name</strong></div>
-                    <div class="item-data">James Doe</div>
+                    <div class="item-data">{{ name }}</div>
                   </div>
                   <!--//col-->
                   <div class="col text-right"><a class="btn-sm app-btn-secondary" href="#">Change</a></div>
@@ -522,6 +522,6 @@
     <div class="container text-center py-3"><!----><small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i>by <a class="app-link" href="#">Xiaoying Riley</a>for developers</small></div>
   </footer>
   <!--//app-footer--></div>
-<!--//app-wrapper--><!-- Javascript --><script src="assets/plugins/popper.min.js"></script><script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script><!-- Page Specific JS --><script src="assets/js/app.js"></script>
+<!--//app-wrapper--><!-- Javascript --><script src="{% static 'plugins/popper.min.js' %}"></script><script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script><!-- Page Specific JS --><script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>
