@@ -410,6 +410,13 @@ progress {
     display: none !important
 }
 
+.reset_password{
+    color: #ff5458;
+    display: flex;
+    justify-content: center;
+
+}
+
 .lead {
     font-size: 1.25rem;
     font-weight: 300

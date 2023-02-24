@@ -15,8 +15,10 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/venv_cloud" />
+      <excludeFolder url="file://$MODULE_DIR$/venv_cc" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8 (UK_trafic_accident)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.10 (venv_cc)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

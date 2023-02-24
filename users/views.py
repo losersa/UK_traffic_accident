@@ -7,6 +7,8 @@ from django.template import loader,Template,Context
 
 from .models import Users
 
+# res = Users.objects.all().values('id', 'user_name', 'user_email', 'user_password')
+
 def index(request):
     latest_user_list = Users.objects.order_by('-user_name')[:5]
     template = loader.get_template('polls/index.html')
@@ -14,21 +16,16 @@ def index(request):
         'latest_user_list': latest_user_list,
     }
     return HttpResponse(template.render(context, request))
-
 # def index(request):
 #     latest_user_list = Users.objects.order_by('-user_name')[:5]
 #     context = {'latest_user_list': latest_user_list}
 #     return render(request, 'polls/index.html', context)
-
 def detail(request, question_id):
     return HttpResponse("You're looking at question %s." % question_id)
-
 def results(request, question_id):
     response = "You're looking at the results of question %s."
     return HttpResponse(response % question_id)
-
 def vote(request, question_id):
-
     return HttpResponse("You're voting on question %s." % question_id)
 
 # def index(request):
@@ -43,6 +40,16 @@ def error_404(request):
     return render(request, "traffic/404.html")
 
 def account(request):
+    # res = Users.objects.all().values('id', 'user_name', 'user_email', 'user_password')
+    # context = {}
+    # # if res.first().user_email == email:
+    # name = res.first().get('user_name')
+    # user_email = res.first().get('user_email')
+    # user_password = res.first().get('user_password')
+    user_email = request.session['email']
+    res = Users.objects.filter(user_email=user_email)
+
+
     return render(request, "traffic/account.html")
 
 def charts(request):
@@ -61,10 +68,25 @@ def index(request):
 
 def login(request):
 
+    email = request.POST.get("signin-email")
+    password = request.POST.get("signin-password")
+    context = {}
 
-    res = Users.objects.all().values('id', 'user_name')
+    res = Users.objects.filter(user_email=email)  # 筛选数据库里是否存在登录的邮箱号
 
-    return render(request, "traffic/login.html")
+    if res.first() != None:
+        # user_name = res.first().user_name
+        user_email = res.first().user_email
+        user_password = res.first().user_password
+        if user_email == email and user_password == password:
+            context["login"] = "登录成功"
+            request.session['email'] = user_email
+        else:
+            context["login"] = "邮箱或密码输入错误"
+    else:
+        context["login"] = "该邮箱还未注册账号"
+
+    return render(request, "traffic/login.html", context)
 
 def notifications(request):
     return render(request, "traffic/notifications.html")
@@ -90,8 +112,7 @@ def signup(request):
 
     if confirm_password != password:
         context["confirm_password"] = "两次输入密码不一致"
-
-    if name!=None and email!=None and password!=None:
+    elif name!=None and email!=None and password!=None:
         res = Users.objects.filter(user_email=email)
         if res.first() == None:
             Users.objects.create(user_name=name, user_email=email, user_password=password)
