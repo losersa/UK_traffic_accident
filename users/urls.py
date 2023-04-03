@@ -18,16 +18,16 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
 
     path('404', views.error_404, name='404'),
-    path('account', views.account, name='account'),
+    path('account', views.account.as_view(), name='account'),
     path('charts', views.charts, name='charts'),
     path('docs', views.docs, name='docs'),
     path('help', views.help, name='help'),
     path('index', views.index, name='index'),
-    path('login', views.login, name='login'),
+    path('login', views.login.as_view(), name='login'),
     path('notifications', views.notifications, name='notifications'),
     path('orders', views.orders, name='orders'),
     path('reset_password', views.reset_password, name='reset_password'),
     path('settings', views.settings, name='settings'),
-    path('signup', views.signup, name='signup'),
+    path('signup', views.signup.as_view(), name='signup'),
 
 ]
