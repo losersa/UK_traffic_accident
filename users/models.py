@@ -1,4 +1,7 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy, gettext as _
 
 
@@ -29,3 +32,24 @@ class Users(models.Model):
 #     class Meta:
 #         verbose_name = 'Translate'
 #         db_table = 'translate'
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
+# 文件模型
+class FileModel(models.Model):
+    upload = models.FileField(upload_to=user_directory_path)
+    # 文件名称
+    file_name = models.CharField(max_length=255)
+    # 文件类型
+    file_type = models.CharField(max_length=100)
+    # 文件大小
+    file_size = models.DecimalField(max_digits=10, decimal_places=1)
+    # 文件保存路径
+    file_path = models.CharField(max_length=255)
+    # 上传时间
+    upload_time = models.DateTimeField(default=timezone.now)
+
+
+
+

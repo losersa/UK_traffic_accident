@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # 'users.views.global_setting',
 ]
 
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -89,7 +91,7 @@ WSGI_APPLICATION = 'UK_trafic_accident.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',# 数据库引擎
-        'NAME': 'uk_trafic_accident',# 数据库名称
+        'NAME': 'uk_traffic_accident',# 数据库名称
         'USER': 'root',# 用户名
         'HOST': 'localhost',# mysql服务所在的主机ip
         'PORT': 3306, #端口
@@ -148,3 +150,15 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# file:settings.py
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 类似于静态文件的配置
+
+
+
+TASK_UPLOAD_FILE_TYPES = ['pdf', 'vnd.oasis.opendocument.text','vnd.ms-excel','msword','application',]
+TASK_UPLOAD_FILE_MAX_SIZE = "5242880"
